@@ -90,12 +90,17 @@ public class YandexTestPage {
     }
 
     public String saveFinalResult() {
-        String title = driver.findElement(getSecondResultLocator).getAttribute("title");
+        String title = driver.findElement(getFinalResultLocator).getAttribute("title");
         return title;
     }
 
-    public void equalResult() {
-        System.out.println(saveSecondResult().equals(saveFinalResult()));
+    public boolean equalResult() {
+        try {
+            System.out.println(saveSecondResult().equals(saveFinalResult()));
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
 }
