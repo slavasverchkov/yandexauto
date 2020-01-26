@@ -38,7 +38,7 @@ public class YandexTestPage {
     By getSecondResultLocator = (By.xpath("//div[2]/div[4]/div/h3/a"));
     By getHeaderSearchToLocator = (By.id("header-search"));
     By getButtonSubmitLocator = (By.cssSelector(".button2"));
-    By getFinalResultLocator = (By.xpath("//div[1]/div[4]/div/h3/a"));
+    By getFinalResultLocator = (By.xpath("//div[2]/div[4]/div/h3/a"));
 
     public void open(){
         String url = (String) jsonObject.get("url");
@@ -94,13 +94,19 @@ public class YandexTestPage {
         return title;
     }
 
-    public boolean equalResult() {
+    public void equalResult() {
+        boolean temp=true;
         try {
+            System.out.println(saveSecondResult());
+            System.out.println(saveFinalResult());
             System.out.println(saveSecondResult().equals(saveFinalResult()));
-            return true;
+             if (saveSecondResult().equals(saveFinalResult()) == false) {
+                 throw new Exception();
+             }
+            System.out.println("EQUAL");
         } catch (Exception e) {
-            return false;
+            System.out.println("NOT EQUAL");
+
         }
     }
-
 }
