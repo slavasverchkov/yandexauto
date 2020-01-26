@@ -95,7 +95,6 @@ public class YandexTestPage {
     }
 
     public void equalResult() {
-        boolean temp=true;
         try {
             System.out.println(saveSecondResult());
             System.out.println(saveFinalResult());
@@ -106,7 +105,6 @@ public class YandexTestPage {
             System.out.println("EQUAL");
         } catch (Exception e) {
             System.out.println("NOT EQUAL");
-
         }
     }
 }
