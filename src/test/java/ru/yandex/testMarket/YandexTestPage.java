@@ -7,6 +7,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -15,6 +17,7 @@ import java.io.Reader;
 public class YandexTestPage {
 
     WebDriver  driver;
+    WebDriverWait wait;
 
     public YandexTestPage(WebDriver driver) throws IOException, ParseException {
         this.driver = driver;
@@ -26,10 +29,9 @@ public class YandexTestPage {
 
     @FindBy(id = "header")
     private WebElement header;
-    private WebElement temp;
 
     By getMarketLocator = By.cssSelector("a[data-id='market']");
-    By getSomeSpaceLocator = By.cssSelector(".n-w-tabs__horizontal-tabs");
+    By getSomeSpaceLocator = By.cssSelector(".\\_21NjfY1k45");
     By getComputerTechnologyLocator = (By.xpath("//a[contains(@href, '/catalog--kompiuternaia-tekhnika/54425')]"));
     By getTabletsLocator = (By.xpath("//li/div/a"));
     By getInputFromLocator = (By.id("glpricefrom"));
@@ -39,6 +41,9 @@ public class YandexTestPage {
     By getHeaderSearchToLocator = (By.id("header-search"));
     By getButtonSubmitLocator = (By.cssSelector(".button2"));
     By getFinalResultLocator = (By.xpath("//div[2]/div[4]/div/h3/a"));
+
+    By getBackPreloader = By.cssSelector(".preloadable__preloader:nth-child(6)");
+    By getPreloader = By.cssSelector(".preloadable__preloader:nth-child(6) > .spin2");
 
     public void open(){
         String url = (String) jsonObject.get("url");
@@ -73,7 +78,13 @@ public class YandexTestPage {
 
     public void chooseNameMark() throws InterruptedException {
         driver.findElement(getNameLabelLocator).click();
-        Thread.sleep(3000);
+        Thread.sleep(1000);
+        //wait.until(ExpectedConditions.visibilityOfElementLocated(getBackPreloader));
+       // wait.until(ExpectedConditions.invisibilityOfElementLocated(getPreloader));
+        (new WebDriverWait(driver, 10))
+                .until(ExpectedConditions
+                        .invisibilityOfElementLocated(getPreloader));
+       // Thread.sleep(3000);
     }
 
     public String saveSecondResult() {
