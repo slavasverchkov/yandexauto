@@ -26,4 +26,19 @@ public class YandexTest extends WebDriverSettings {
         yandexTestPage.clickButtonSubmit();
         yandexTestPage.equalResult();
     }
+
+    @Test
+    public void Translate() throws InterruptedException {
+        YandexTranslatePage yandexTranslatePage = PageFactory.initElements(driver, YandexTranslatePage.class);
+        YandexTestPage yandexTestPage = PageFactory.initElements(driver, YandexTestPage.class);
+
+        yandexTestPage.open();
+        yandexTranslatePage.goTranslate();
+        yandexTranslatePage.inputFromLanguage();
+        yandexTranslatePage.ChooseLanguageFrom();
+        yandexTranslatePage.ChooseLanguageTo();
+        yandexTranslatePage.CheckResult();
+
+    }
+
 }

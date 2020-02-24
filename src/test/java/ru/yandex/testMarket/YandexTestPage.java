@@ -3,6 +3,7 @@ package ru.yandex.testMarket;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -116,6 +117,7 @@ public class YandexTestPage {
             System.out.println("EQUAL");
         } catch (Exception e) {
             System.out.println("NOT EQUAL");
+            Assert.fail(e + " Not Equal");
         }
     }
 }
